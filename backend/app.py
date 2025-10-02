@@ -20,7 +20,10 @@ for d in [UPLOAD_DIR, PROCESSED_DIR, SVG_DIR, FONTS_DIR]:
 
 app.config['MAX_CONTENT_LENGTH'] = 20 * 1024 * 1024  # 20 MB limit
 
-FF_BIN = r"C:\Program Files (x86)\FontForgeBuilds\run_fontforge.exe"
+FF_BIN = "fontforge"
+subprocess.check_call([FF_BIN, "-script", ff_script, svg_out, out_ttf, font_name],
+                      stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
 
 @app.route("/upload", methods=["POST"])
 def upload():

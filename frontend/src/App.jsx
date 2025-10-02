@@ -15,7 +15,7 @@ export default function App() {
     fd.append("sheet", file);
     fd.append("font_name", fontName);
     try {
-      const res = await fetch("https://hw-font-api.onrender.com/upload", {
+      const res = await fetch("https://handwriting-font-generator.onrender.com/upload", {
         method: "POST",
         body: fd
       });
