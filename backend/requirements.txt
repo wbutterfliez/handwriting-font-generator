@@ -3,3 +3,5 @@ Werkzeug==2.2.3
 numpy==2.1.1
 Pillow==11.3.0
 opencv-python==4.10.0.84
+gunicorn==21.2.0
+flask-cors==4.0.0
