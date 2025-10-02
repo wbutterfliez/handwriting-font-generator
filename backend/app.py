@@ -18,7 +18,7 @@ FONTS_DIR = "storage/fonts"
 for d in [UPLOAD_DIR, PROCESSED_DIR, SVG_DIR, FONTS_DIR]:
     os.makedirs(d, exist_ok=True)
 
-app.config['MAX_CONTENT_LENGTH'] = 20 * 1024 * 1024  # 20 MB
+app.config['MAX_CONTENT_LENGTH'] = 20 * 1024 * 1024  # 20 MB limit
 
 FF_BIN = r"C:\Program Files (x86)\FontForgeBuilds\run_fontforge.exe"
 

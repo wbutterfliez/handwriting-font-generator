@@ -1,5 +1,3 @@
-# generate_font_ff.py
-# Run: fontforge -script generate_font_ff.py svg_folder out.ttf "Font Name"
 import fontforge
 import sys
 import os
@@ -20,7 +18,6 @@ font.fontname = font_name.replace(" ", "")
 font.fullname = font_name
 font.familyname = font_name
 
-# set a default em size and ascent/descent
 EM = 1000
 font.ascent = 800
 font.descent = 200
@@ -34,11 +31,7 @@ for ch in CHARS:
     glyph = font.createChar(codepoint, ch)
     print("Importing", svg_path, "into glyph", ch)
     glyph.importOutlines(svg_path)
-    # optional: scale glyph to fit em size
-   #glyph.transform(psMat.scale(1, -1))  # flip as needed (sometimes SVGs invert)
-    # set width
-    glyph.width = 600
+    glyph.width = 480
 
-# generate font
 font.generate(out_ttf)
 print("Generated font:", out_ttf)

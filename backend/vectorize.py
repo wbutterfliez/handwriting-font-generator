@@ -1,21 +1,16 @@
-# vectorize.py
 import os
 import subprocess
 import cv2
 
 def png_to_pbm(png_path, pbm_path):
-    """Convert PNG to PBM using OpenCV (Windows-friendly)."""
     img = cv2.imread(png_path, cv2.IMREAD_GRAYSCALE)
     if img is None:
         raise FileNotFoundError(f"File not found: {png_path}")
-    # Binarize (black/white)
     _, img_bin = cv2.threshold(img, 128, 255, cv2.THRESH_BINARY)
-    # PBM format expects 0=black, 255=white, so invert colors
     img_bin = 255 - img_bin
     cv2.imwrite(pbm_path, img_bin)
 
 def vectorize_with_potrace(pbm_path, out_svg_path):
-    """Call potrace CLI to convert PBM to SVG"""
     cmd = ['potrace', pbm_path, '-s', '-o', out_svg_path]
     subprocess.check_call(cmd)
 
@@ -31,7 +26,6 @@ def batch_vectorize(png_dir, svg_out_dir):
         print("Converting", png_path, "->", svg_path)
         png_to_pbm(png_path, pbm_path)
         vectorize_with_potrace(pbm_path, svg_path)
-        # remove pbm
         try:
             os.remove(pbm_path)
         except:
